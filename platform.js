@@ -1,6 +1,3 @@
-
-// homebridge-fasal-weather/src/platform.js
-
 const axios = require('axios');
 const {
   DynamicPlatformPlugin,
@@ -36,17 +33,17 @@ class FasalWeatherPlatform {
       });
       const data = response.data;
       
-      this.registerAccessory('Temperature Sensor', Service.TemperatureSensor, Characteristic.CurrentTemperature, data.temprature?.latestReading || 0);
-      this.registerAccessory('Humidity Sensor', Service.HumiditySensor, Characteristic.CurrentRelativeHumidity, data.humidity?.latestReading || 0);
-      this.registerAccessory('Rainfall Sensor', Service.LeakSensor, Characteristic.LeakDetected, data.rainFall?.lastHour > 0 ? 1 : 0);
-      this.registerAccessory('Wind Speed Sensor', Service.Fan, Characteristic.RotationSpeed, data.windSpeed || 0);
-      this.registerAccessory('Soil Moisture Sensor', Service.HumiditySensor, Characteristic.CurrentRelativeHumidity, data.soilMoistureL1 || 0);
-      this.registerAccessory('Soil Temperature Sensor', Service.TemperatureSensor, Characteristic.CurrentTemperature, data.soilTemprature || 0);
-      this.registerAccessory('Light Sensor', Service.LightSensor, Characteristic.CurrentAmbientLightLevel, data.lux?.latestReading || 0);
-      this.registerAccessory('Pressure Sensor', Service.AirQualitySensor, Characteristic.AirQuality, data.pressure?.latestReading || 0);
-      this.registerAccessory('Evapotranspiration Sensor', Service.Sensor, Characteristic.StatusActive, data.evapoTranspiration?.[0]?.value || 0);
-      this.registerAccessory('Delta T', Service.Sensor, Characteristic.StatusActive, data.deltaT?.[0]?.isSprayable ? 1 : 0);
-      this.registerAccessory('VPD Sensor', Service.Sensor, Characteristic.StatusActive, data.vpd?.[0]?.value || 0);
+      this.registerAccessory('Temperature Sensor', Service.TemperatureSensor, Characteristic.CurrentTemperature, data.temprature.latestReading);
+      this.registerAccessory('Humidity Sensor', Service.HumiditySensor, Characteristic.CurrentRelativeHumidity, data.humidity.latestReading);
+      this.registerAccessory('Rainfall Sensor', Service.LeakSensor, Characteristic.LeakDetected, data.rainFall.lastHour > 0 ? 1 : 0);
+      this.registerAccessory('Wind Speed Sensor', Service.Fan, Characteristic.RotationSpeed, data.windSpeed);
+      this.registerAccessory('Soil Moisture Sensor', Service.HumiditySensor, Characteristic.CurrentRelativeHumidity, data.soilMoistureL1);
+      this.registerAccessory('Soil Temperature Sensor', Service.TemperatureSensor, Characteristic.CurrentTemperature, data.soilTemprature);
+      this.registerAccessory('Light Sensor', Service.LightSensor, Characteristic.CurrentAmbientLightLevel, data.lux.latestReading);
+      this.registerAccessory('Pressure Sensor', Service.AirQualitySensor, Characteristic.AirQuality, data.pressure.latestReading);
+      this.registerAccessory('Evapotranspiration Sensor', Service.Sensor, Characteristic.StatusActive, data.evapoTranspiration[0].value);
+      this.registerAccessory('Delta T', Service.Sensor, Characteristic.StatusActive, data.deltaT[0].isSprayable ? 1 : 0);
+      this.registerAccessory('VPD Sensor', Service.Sensor, Characteristic.StatusActive, data.vpd[0].value);
     } catch (error) {
       this.log.error('Failed to fetch weather data:', error);
     }
@@ -60,7 +57,7 @@ class FasalWeatherPlatform {
       const accessory = new this.api.platformAccessory(name, uuid);
       accessory.addService(serviceType, name)
         .getCharacteristic(characteristicType)
-        .updateValue(value);
+        .onGet(() => value);
       
       this.api.registerPlatformAccessories('homebridge-fasal-weather', 'FasalWeatherPlatform', [accessory]);
       this.accessories.push(accessory);

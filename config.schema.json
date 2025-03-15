@@ -1,24 +1,29 @@
 {
-    "pluginAlias": "FasalWeatherPlatform",
-    "pluginType": "platform",
-    "schema": [
-        {
-            "name": "apiKey",
-            "label": "Fasal API Key",
-            "type": "password",
-            "required": true
-        },
-        {
-            "name": "customerId",
-            "label": "Customer ID",
-            "type": "text",
-            "required": true
-        },
-        {
-            "name": "plotId",
-            "label": "Plot ID",
-            "type": "text",
-            "required": true
-        }
-    ]
+  "pluginAlias": "homebridge-fasal-weather",
+  "pluginType": "platform",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "platform": {
+        "type": "string",
+        "title": "Platform Name",
+        "default": "FasalWeatherPlatform"
+      },
+      "apiKey": {
+        "type": "string",
+        "title": "Fasal API Key",
+        "required": true
+      },
+      "customerId": {
+        "type": "string",
+        "title": "Customer ID",
+        "required": true
+      },
+      "plotId": {
+        "type": "string",
+        "title": "Plot ID",
+        "required": true
+      }
+    }
+  }
 }
