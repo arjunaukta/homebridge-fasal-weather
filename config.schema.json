@@ -1,0 +1,24 @@
+{
+    "pluginAlias": "FasalWeatherPlatform",
+    "pluginType": "platform",
+    "schema": [
+        {
+            "name": "apiKey",
+            "label": "Fasal API Key",
+            "type": "password",
+            "required": true
+        },
+        {
+            "name": "customerId",
+            "label": "Customer ID",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "plotId",
+            "label": "Plot ID",
+            "type": "text",
+            "required": true
+        }
+    ]
+}

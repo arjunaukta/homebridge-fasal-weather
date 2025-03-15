@@ -1,0 +1,17 @@
+{
+    "name": "homebridge-fasal-weather",
+    "version": "1.0.0",
+    "description": "Homebridge plugin for Fasal Weather Station.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["homebridge-plugin", "weather", "fasal"],
+    "engines": {
+        "node": ">=14.0.0",
+        "homebridge": ">=1.6.0"
+    },
+    "dependencies": {
+        "axios": "^1.4.0"
+    }
+}
