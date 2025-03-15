@@ -1,15 +1,24 @@
 {
   "name": "homebridge-fasal-weather",
   "version": "1.0.0",
-  "description": "Homebridge plugin to fetch weather data from the Fasal Weather Station API.",
-  "main": "index.js",
+  "description": "Homebridge plugin for Fasal Weather Station",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["homebridge-plugin", "fasal", "weather", "homekit"],
+  "keywords": [
+    "homebridge-plugin",
+    "weather",
+    "fasal"
+  ],
   "author": "Your Name",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
-    "axios": "^1.3.0"
+    "axios": "^1.5.0",
+    "homebridge": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "homebridge": ">=1.0.0"
   }
 }
