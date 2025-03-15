@@ -20,7 +20,7 @@ class FasalWeatherAccessory {
             || this.accessory.addService(api.hap.Service.Fan);
 
         this.updateWeatherData();
-        setInterval(() => this.updateWeatherData(), 300000);
+        setInterval(() => this.updateWeatherData(), 3600000);
     }
 
     async updateWeatherData() {
